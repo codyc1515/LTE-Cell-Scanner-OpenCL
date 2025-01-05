@@ -8,49 +8,49 @@
 #  OPENCL_LIBRARIES, the libraries needed to use OpenCL.
 #  OPENCL_FOUND, If false, do not try to use OpenCL.
 
-FIND_PATH(OPENCL_INCLUDE_DIR CL/cl.h
-  /usr/include
-  opt/intel/intel-opencl-1.2-6.0.0.1049/opencl-1.2-sdk-6.0.0.1049/include
-  /opt/AMDAPPSDK-3.0/include
-  /opt/AMDAPP/include/
-  /usr/local/include
-  /usr/local/cuda/include/
-  NO_DEFAULT_PATH
+find_path(OPENCL_INCLUDE_DIR CL/cl.h
+	/usr/include
+	opt/intel/intel-opencl-1.2-6.0.0.1049/opencl-1.2-sdk-6.0.0.1049/include
+	/opt/AMDAPPSDK-3.0/include
+	/opt/AMDAPP/include/
+	/usr/local/include
+	/usr/local/cuda/include/
+	NO_DEFAULT_PATH
 )
 
-FIND_LIBRARY(OPENCL_LIBRARY libOpenCL.so
-  /usr/lib64
-  /opt/intel/intel-opencl-1.2-6.0.0.1049/opencl-1.2-6.0.0.1049/lib64
-  /opt/AMDAPPSDK-3.0/lib/x86_64/sdk
-  /opt/AMDAPP/lib/x86_64
-  /usr/lib
-  /usr/local/lib
-  NO_DEFAULT_PATH
+find_library(OPENCL_LIBRARY libOpenCL.so
+	/usr/lib64
+	/usr/lib/x86_64-linux-gnu
+	/opt/intel/intel-opencl-1.2-6.0.0.1049/opencl-1.2-6.0.0.1049/lib64
+	/opt/AMDAPPSDK-3.0/lib/x86_64/sdk
+	/opt/AMDAPP/lib/x86_64
+	/usr/lib
+	/usr/local/lib
+	NO_DEFAULT_PATH
 )
 
-IF (OPENCL_LIBRARY AND OPENCL_INCLUDE_DIR)
-  SET(OPENCL_LIBRARIES ${OPENCL_LIBRARY})
-  SET(OPENCL_FOUND "YES")
-ELSE (OPENCL_LIBRARY AND OPENCL_INCLUDE_DIR)
-  SET(OPENCL_FOUND "NO")
-#  MESSAGE(STATUS "OPENCL LIB not found.")
-ENDIF (OPENCL_LIBRARY AND OPENCL_INCLUDE_DIR)
+if(OPENCL_LIBRARY AND OPENCL_INCLUDE_DIR)
+	set(OPENCL_LIBRARIES ${OPENCL_LIBRARY})
+	set(OPENCL_FOUND "YES")
+else(OPENCL_LIBRARY AND OPENCL_INCLUDE_DIR)
+	set(OPENCL_FOUND "NO")
+	message(STATUS "OPENCL LIB not found.")
+endif(OPENCL_LIBRARY AND OPENCL_INCLUDE_DIR)
 
-IF (OPENCL_FOUND)
-  IF (NOT OPENCL_FIND_QUIETLY)
-#    MESSAGE(STATUS "Found OpenCL LIB: ${OPENCL_LIBRARIES}")
-  ENDIF (NOT OPENCL_FIND_QUIETLY)
-ELSE (OPENCL_FOUND)
-  IF (OPENCL_FIND_REQUIRED)
-#    MESSAGE(FATAL_ERROR "Could not find OpenCL library")
-  ENDIF (OPENCL_FIND_REQUIRED)
-ENDIF (OPENCL_FOUND)
+if(OPENCL_FOUND)
+	if(NOT OPENCL_FIND_QUIETLY)
+		message(STATUS "Found OpenCL LIB: ${OPENCL_LIBRARIES}")
+	endif(NOT OPENCL_FIND_QUIETLY)
+else(OPENCL_FOUND)
+	if(OPENCL_FIND_REQUIRED)
+		message(FATAL_ERROR "Could not find OpenCL library")
+	endif(OPENCL_FIND_REQUIRED)
+endif(OPENCL_FOUND)
 
 # Deprecated declarations.
-GET_FILENAME_COMPONENT (NATIVE_OPENCL_LIB_PATH ${OPENCL_LIBRARY} PATH)
+get_filename_component(NATIVE_OPENCL_LIB_PATH ${OPENCL_LIBRARY} PATH)
 
-MARK_AS_ADVANCED(
-  OPENCL_LIBRARY
-  OPENCL_INCLUDE_DIR
+mark_as_advanced(
+	OPENCL_LIBRARY
+	OPENCL_INCLUDE_DIR
 )
-
