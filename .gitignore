@@ -89,3 +89,5 @@ dkms.conf
 .idea/
 build-*/
 cmake-build-*/
+
+build

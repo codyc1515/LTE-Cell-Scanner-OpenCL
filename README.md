@@ -11,11 +11,56 @@
 
 ## Build
 You might need to install some [libs](prepare-lib.md) before build.
+
+### Required packages (Linux/macOS)
+The project currently links against Boost, ITPP, FFTW, BLAS/LAPACK, ncurses, and at least one SDR backend library (the default build path is RTL-SDR).
+
+For Ubuntu/Debian (CMake 3.16+ recommended):
+
+```bash
+sudo apt update
+sudo apt install -y \
+  cmake \
+  build-essential \
+  libboost-all-dev \
+  libitpp-dev \
+  libfftw3-dev \
+  libblas-dev \
+  liblapack-dev \
+  librtlsdr-dev \
+  libncurses-dev
 ```
+
+Equivalent Homebrew packages on macOS (CMake 3.16+):
+
+```bash
+brew install \
+  cmake \
+  boost \
+  itpp \
+  fftw \
+  openblas \
+  librtlsdr \
+  ncurses
+```
+
+Notes:
+- BLAS/LAPACK on macOS are typically provided through `openblas`.
+- If you want OpenMP acceleration on macOS, also install `libomp` (`brew install libomp`).
+- OpenCL is optional (`-DUSE_OPENCL=0` disables it). If needed, install an OpenCL runtime for your GPU vendor.
+
+```bash
 mkdir build
 cd build
 cmake ../
 make
+```
+
+If you previously configured with older CMake settings, clear stale cache before re-configuring:
+
+```bash
+rm -f build/CMakeCache.txt
+rm -rf build/CMakeFiles
 ```
 By default above builds for rtlsdr. Following arguments could be added at the end of cmake command for different hardwares and options. 
 ```
