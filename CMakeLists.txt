@@ -1,10 +1,9 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.4)
 
-# CMake >=3.30 removes FindBoost unless CMP0167 is set to OLD.
-# This project relies on module-mode FindBoost variables/libraries.
 if(POLICY CMP0167)
-	cmake_policy(SET CMP0167 OLD)
+  cmake_policy(SET CMP0167 OLD)
 endif()
+
 # allow more human readable "if then else" constructs
 #SET(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS TRUE)
 
@@ -61,19 +60,17 @@ ELSE(USE_OPENCL MATCHES 0)
 ENDIF(USE_OPENCL MATCHES 0)
 
 FIND_PACKAGE(OpenMP)
-if(OpenMP_FOUND)
+if(OPENMP_FOUND)
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 endif()
 
-# Prefer the legacy FindBoost module instead of Boost's CMake package config.
-# Homebrew Boost installs often work better in module mode for component libs.
+find_package(Threads REQUIRED)
+
 set(Boost_NO_BOOST_CMAKE ON)
-set(Boost_NO_BOOST_CMAKE ON CACHE BOOL "Disable Boost CMake package config" FORCE)
-unset(Boost_DIR CACHE)
-unset(Boost_DIR)
-FIND_PACKAGE(Boost MODULE REQUIRED COMPONENTS thread system)
+FIND_PACKAGE(Boost REQUIRED COMPONENTS thread)
 INCLUDE_DIRECTORIES("${Boost_INCLUDE_DIRS}")
+
 FIND_PACKAGE(ITPP REQUIRED)
 INCLUDE_DIRECTORIES("${ITPP_INCLUDE_DIR}")
 FIND_PACKAGE(BLAS REQUIRED)
