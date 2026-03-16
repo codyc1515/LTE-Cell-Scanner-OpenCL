@@ -15,7 +15,7 @@ You might need to install some [libs](prepare-lib.md) before build.
 ### Required packages (Linux/macOS)
 The project currently links against Boost, ITPP, FFTW, BLAS/LAPACK, ncurses, and at least one SDR backend library (the default build path is RTL-SDR).
 
-For Ubuntu/Debian:
+For Ubuntu/Debian (CMake 3.16+ recommended):
 
 ```bash
 sudo apt update
@@ -31,7 +31,7 @@ sudo apt install -y \
   libncurses-dev
 ```
 
-Equivalent Homebrew packages on macOS:
+Equivalent Homebrew packages on macOS (CMake 3.16+):
 
 ```bash
 brew install \

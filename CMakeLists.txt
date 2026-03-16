@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.10)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
 
 # CMake >=3.30 removes FindBoost unless CMP0167 is set to OLD.
 # This project relies on module-mode FindBoost variables/libraries.
@@ -69,7 +69,7 @@ endif()
 # Prefer the legacy FindBoost module instead of Boost's CMake package config.
 # Homebrew Boost installs often work better in module mode for component libs.
 set(Boost_NO_BOOST_CMAKE ON)
-FIND_PACKAGE(Boost COMPONENTS thread system REQUIRED)
+FIND_PACKAGE(Boost MODULE REQUIRED COMPONENTS thread system)
 INCLUDE_DIRECTORIES("${Boost_INCLUDE_DIRS}")
 FIND_PACKAGE(ITPP REQUIRED)
 INCLUDE_DIRECTORIES("${ITPP_INCLUDE_DIR}")

@@ -16,7 +16,7 @@ sudo apt install -y \
   libncurses-dev
 ```
 
-Equivalent Homebrew packages (macOS):
+Equivalent Homebrew packages (macOS, CMake 3.16+):
 
 ```bash
 brew install \
