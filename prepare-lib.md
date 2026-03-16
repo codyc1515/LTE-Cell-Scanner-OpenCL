@@ -1,9 +1,34 @@
-Examples of some OSs.
+Examples of package installation for building this project.
 
-Ubuntu 20 LTS:
+Ubuntu/Debian:
 
-    sudo apt install libitpp-dev 
-    sudo apt install libblas-dev 
-    sudo apt install liblapack-dev 
-    sudo apt install librtlsdr-dev 
-    sudo apt install libcurses-ocaml-dev 
+```bash
+sudo apt update
+sudo apt install -y \
+  cmake \
+  build-essential \
+  libboost-all-dev \
+  libitpp-dev \
+  libfftw3-dev \
+  libblas-dev \
+  liblapack-dev \
+  librtlsdr-dev \
+  libncurses-dev
+```
+
+Equivalent Homebrew packages (macOS):
+
+```bash
+brew install \
+  cmake \
+  boost \
+  itpp \
+  fftw \
+  openblas \
+  librtlsdr \
+  ncurses
+```
+
+Optional:
+- OpenCL runtime/SDK if you want GPU acceleration (`-DUSE_OPENCL=0` disables OpenCL).
+- `hackrf` and/or `bladerf` libraries if you build with `-DUSE_HACKRF=1` or `-DUSE_BLADERF=1`.
