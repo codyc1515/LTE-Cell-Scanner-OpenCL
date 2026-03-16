@@ -46,6 +46,7 @@ brew install \
 
 Notes:
 - BLAS/LAPACK on macOS are typically provided through `openblas`.
+- If you want OpenMP acceleration on macOS, also install `libomp` (`brew install libomp`).
 - OpenCL is optional (`-DUSE_OPENCL=0` disables it). If needed, install an OpenCL runtime for your GPU vendor.
 
 ```bash

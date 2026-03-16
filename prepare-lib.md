@@ -29,6 +29,12 @@ brew install \
   ncurses
 ```
 
+Optional on macOS:
+
+```bash
+brew install libomp
+```
+
 Optional:
 - OpenCL runtime/SDK if you want GPU acceleration (`-DUSE_OPENCL=0` disables OpenCL).
 - `hackrf` and/or `bladerf` libraries if you build with `-DUSE_HACKRF=1` or `-DUSE_BLADERF=1`.
