@@ -55,6 +55,13 @@ cd build
 cmake ../
 make
 ```
+
+If you previously configured with older CMake settings, clear stale cache before re-configuring:
+
+```bash
+rm -f build/CMakeCache.txt
+rm -rf build/CMakeFiles
+```
 By default above builds for rtlsdr. Following arguments could be added at the end of cmake command for different hardwares and options. 
 ```
 -DUSE_BLADERF=1   -- build for BladeRF

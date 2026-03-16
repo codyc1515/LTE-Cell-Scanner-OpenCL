@@ -38,3 +38,11 @@ brew install libomp
 Optional:
 - OpenCL runtime/SDK if you want GPU acceleration (`-DUSE_OPENCL=0` disables OpenCL).
 - `hackrf` and/or `bladerf` libraries if you build with `-DUSE_HACKRF=1` or `-DUSE_BLADERF=1`.
+
+
+If configuration keeps picking old settings, clear CMake cache files and re-run configure:
+
+```bash
+rm -f build/CMakeCache.txt
+rm -rf build/CMakeFiles
+```

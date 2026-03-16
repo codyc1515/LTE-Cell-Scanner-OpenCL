@@ -69,6 +69,9 @@ endif()
 # Prefer the legacy FindBoost module instead of Boost's CMake package config.
 # Homebrew Boost installs often work better in module mode for component libs.
 set(Boost_NO_BOOST_CMAKE ON)
+set(Boost_NO_BOOST_CMAKE ON CACHE BOOL "Disable Boost CMake package config" FORCE)
+unset(Boost_DIR CACHE)
+unset(Boost_DIR)
 FIND_PACKAGE(Boost MODULE REQUIRED COMPONENTS thread system)
 INCLUDE_DIRECTORIES("${Boost_INCLUDE_DIRS}")
 FIND_PACKAGE(ITPP REQUIRED)
