@@ -1056,7 +1056,7 @@ double kalibrate(
 
 	bool dongle_used = (!use_recorded_data) && (strlen(load_bin_filename) == 0);
 
-	double fc_requested_tmp, fc_programmed_tmp, fs_requested_tmp, fs_programmed_tmp;
+	double fc_requested_tmp = 0.0, fc_programmed_tmp = 0.0, fs_requested_tmp = 0.0, fs_programmed_tmp = 0.0;
 	if (dongle_used && fc_requested != 9999e6) {
 		if (dev_use == dev_type_t::RTLSDR) {
 #ifdef HAVE_RTLSDR

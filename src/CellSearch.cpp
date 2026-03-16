@@ -952,7 +952,7 @@ int main(
 
   double fs_programmed = FS_LTE/16; // in case not initialized by config_rtlsdr
   double fc_programmed; // for correction frequency calculation
-  double fc_requested, fc_requested_tmp, fc_programmed_tmp, fs_requested_tmp, fs_programmed_tmp;
+  double fc_requested = 0.0, fc_requested_tmp = 0.0, fc_programmed_tmp = 0.0, fs_requested_tmp = 0.0, fs_programmed_tmp = 0.0;
 
   bool dongle_used = (!use_recorded_data) && (strlen(load_bin_filename)==0);
   if ( dongle_used && freq_start!=9999e6) {
