@@ -66,10 +66,6 @@ if(OpenMP_FOUND)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 endif()
 
-# Ensure thread targets exist before Boost package config is loaded.
-# Homebrew's boost_thread target links against Threads::Threads.
-find_package(Threads REQUIRED)
-
 # Prefer the legacy FindBoost module instead of Boost's CMake package config.
 # Homebrew Boost installs often work better in module mode for component libs.
 set(Boost_NO_BOOST_CMAKE ON)
